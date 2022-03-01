@@ -8,6 +8,18 @@ class timerRepo {
   List<AvailableDays> availableDays = [];
   void create() {
     availableDays = [];
+
+    availableDays.add(getDay("Sunday"));
+    availableDays.add(getDay("Monday"));
+    availableDays.add(getDay("Tuesday"));
+    availableDays.add(getDay("Wednesday"));
+    availableDays.add(getDay("Thursday"));
+    availableDays.add(getDay("Friday"));
+    availableDays.add(getDay("Saturday"));
+
+  }
+  getDay(title)
+  {
     Slots morning = Slots(title: "Morning");
     Slots evening = Slots(title: "Evening");
     Slots afternoon = Slots(title: "After Noon");
@@ -15,19 +27,7 @@ class timerRepo {
     timeSlots.add(morning);
     timeSlots.add(afternoon);
     timeSlots.add(evening);
-    AvailableDays day1 = AvailableDays(slots: timeSlots, day: "Sunday");
-    AvailableDays day2 = AvailableDays(slots: timeSlots, day: "Monday");
-    AvailableDays day3 = AvailableDays(slots: timeSlots, day: "Tuesday");
-    AvailableDays day4 = AvailableDays(slots: timeSlots, day: "Wednesday");
-    AvailableDays day5 = AvailableDays(slots: timeSlots, day: "Thursday");
-    AvailableDays day6 = AvailableDays(slots: timeSlots, day: "Friday");
-    AvailableDays day7 = AvailableDays(slots: timeSlots, day: "Saturday");
-    availableDays.add(day1);
-    availableDays.add(day2);
-    availableDays.add(day3);
-    availableDays.add(day4);
-    availableDays.add(day5);
-    availableDays.add(day6);
-    availableDays.add(day7);
+    return AvailableDays(slots: timeSlots, day: title);
+
   }
 }

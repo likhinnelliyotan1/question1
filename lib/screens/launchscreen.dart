@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:question1/helper/borders.dart';
 import 'package:question1/helper/buttons.dart';
+import 'package:question1/helper/themedata.dart';
 // import 'package:question1/helper/themedata.dart';
 import 'package:question1/models/availabledays.dart';
 import 'package:question1/models/slots.dart';
@@ -48,7 +49,8 @@ class _LaunchState extends State<LaunchScreen> {
                         });
                   },
                 ),
-                commonButton(name: "Save", onTap: () {})
+                const SizedBox(height: 20,),
+                commonButton(name: "Save", onTap: () {},bg:colorPrimary)
               ],
             ),
           ),
@@ -84,8 +86,8 @@ class _LaunchState extends State<LaunchScreen> {
         const SizedBox(
           width: 10,
         ),
-        SizedBox(
-          height: 40,
+        day.available! ?SizedBox(
+          height: 30,
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               return dayItem(day.slots![index]);
@@ -94,6 +96,10 @@ class _LaunchState extends State<LaunchScreen> {
             shrinkWrap: true,
             itemCount: day.slots!.length,
           ),
+        ):const Text(
+          "Un Available",
+          style: TextStyle(
+              color: Colors.grey, fontSize: 12),
         )
       ],
     ));
