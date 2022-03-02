@@ -5,6 +5,7 @@ import 'package:question1/helper/buttons.dart';
 import 'package:question1/helper/themedata.dart';
 // import 'package:question1/helper/themedata.dart';
 import 'package:question1/models/availabledays.dart';
+import 'package:question1/models/days.dart';
 import 'package:question1/models/slots.dart';
 import 'package:question1/notifiers/update_notifier.dart';
 import 'package:question1/repo/timerrepo.dart';
@@ -35,9 +36,15 @@ class _LaunchState extends State<LaunchScreen> {
         child: SingleChildScrollView(
           child: Container(
             margin:
-                const EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
+                const EdgeInsets.only(top: 40, left: 10, right: 10, bottom: 20),
             child: Column(
               children: [
+               const  Text(
+                  "Set your Weekly hours",
+                  style: TextStyle(
+                      color: Colors.black, fontSize: 14),
+                ),
+                const SizedBox(height: 15,),
                 Consumer<UpdateNotifier>(
                   builder: (context, value, child) {
                     return ListView.builder(
@@ -60,9 +67,13 @@ class _LaunchState extends State<LaunchScreen> {
   }
 
   sheduleItem(AvailableDays day) {
-    return Container(
-          margin: EdgeInsets.only(top: 10),
-        child: Row(
+    return Column(
+
+      children: [
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
       children: [
         InkWell(
           onTap: () {
@@ -79,10 +90,13 @@ class _LaunchState extends State<LaunchScreen> {
         const SizedBox(
           width: 10,
         ),
-        Text(
-          day.day!,
-          style: TextStyle(
-              color: day.available! ? Colors.black : Colors.grey, fontSize: 14),
+        SizedBox(
+          width: 80,
+          child: Text(
+            day.day!,
+            style: TextStyle(
+                color: Colors.black, fontSize: 14),
+          ),
         ),
         const SizedBox(
           width: 10,
@@ -103,7 +117,13 @@ class _LaunchState extends State<LaunchScreen> {
               color: Colors.grey, fontSize: 14),
         )
       ],
-    ));
+    ),
+        const SizedBox(
+          height: 10,
+        ),
+        Divider(height: 1,)
+      ],
+    );
   }
 
   dayItem(Slots slot) {
@@ -114,15 +134,33 @@ class _LaunchState extends State<LaunchScreen> {
         _updateNotifier.update();
       },
       child: Container(
-        margin: const EdgeInsets.only(left: 5, right: 5),
-        padding: const EdgeInsets.only(left: 5,right: 5),
-        decoration: getBorder(color: available! ? Colors.black : Colors.grey),
+        margin: const EdgeInsets.only(left: 4, right: 4),
+        padding: const EdgeInsets.only(left: 2,right: 2),
+        decoration: getBorder(color: available! ? colorPrimary : Colors.grey),
         child: Text(
           slot.title!,
           style: TextStyle(
-              color: available ? Colors.black : Colors.grey, fontSize: 11),
+              color: available ? colorPrimary : Colors.grey, fontSize: 12),
         ),
       ),
     );
+  }
+  List<AvailableDays> getAvailableDays()
+  {
+    List<AvailableDays> days=[];
+    for(int i=0;i<availableDays.length;i++)
+      {
+        if(availableDays[i].available!)
+          days.add(availableDays[i]);
+      }
+    return days;
+  }
+  saveData()
+  {
+    List<AvailableDays> days=getAvailableDays();
+    String txt="";
+    Days day=Days(days:availableDays);
+    //var jsonData=Days().toJson();
+
   }
 }

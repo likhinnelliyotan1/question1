@@ -9,18 +9,18 @@ class timerRepo {
   void create() {
     availableDays = [];
 
-    availableDays.add(getDay("Sunday"));
-    availableDays.add(getDay("Monday"));
-    availableDays.add(getDay("Tuesday"));
-    availableDays.add(getDay("Wednesday"));
-    availableDays.add(getDay("Thursday"));
-    availableDays.add(getDay("Friday"));
-    availableDays.add(getDay("Saturday"));
+    availableDays.add(getDay("SUN"));
+    availableDays.add(getDay("MON"));
+    availableDays.add(getDay("TUE"));
+    availableDays.add(getDay("WED"));
+    availableDays.add(getDay("THU"));
+    availableDays.add(getDay("FRI"));
+    availableDays.add(getDay("SAT"));
 
   }
   getDay(title)
   {
-    Slots morning = Slots(title: "Morning");
+    Slots morning = Slots(title: "Morning",available: true);
     Slots evening = Slots(title: "Evening");
     Slots afternoon = Slots(title: "After Noon");
     List<Slots> timeSlots = [];
