@@ -60,7 +60,8 @@ class _LaunchState extends State<LaunchScreen> {
   }
 
   sheduleItem(AvailableDays day) {
-    return Expanded(
+    return Container(
+          margin: EdgeInsets.only(top: 10),
         child: Row(
       children: [
         InkWell(
@@ -87,7 +88,7 @@ class _LaunchState extends State<LaunchScreen> {
           width: 10,
         ),
         day.available! ?SizedBox(
-          height: 30,
+          height: 22,
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               return dayItem(day.slots![index]);
@@ -99,7 +100,7 @@ class _LaunchState extends State<LaunchScreen> {
         ):const Text(
           "Un Available",
           style: TextStyle(
-              color: Colors.grey, fontSize: 12),
+              color: Colors.grey, fontSize: 14),
         )
       ],
     ));
@@ -113,13 +114,13 @@ class _LaunchState extends State<LaunchScreen> {
         _updateNotifier.update();
       },
       child: Container(
-        padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.only(left: 5, right: 5),
+        padding: const EdgeInsets.only(left: 5,right: 5),
         decoration: getBorder(color: available! ? Colors.black : Colors.grey),
         child: Text(
           slot.title!,
           style: TextStyle(
-              color: available ? Colors.black : Colors.grey, fontSize: 12),
+              color: available ? Colors.black : Colors.grey, fontSize: 11),
         ),
       ),
     );

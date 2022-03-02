@@ -1,4 +1,4 @@
-package com.shedule.app.question1
+package com.shedule.app
 
 import io.flutter.embedding.android.FlutterActivity
 
