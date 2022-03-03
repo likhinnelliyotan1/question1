@@ -9,25 +9,25 @@ class timerRepo {
   void create() {
     availableDays = [];
 
-    availableDays.add(getDay("SUN"));
-    availableDays.add(getDay("MON"));
-    availableDays.add(getDay("TUE"));
-    availableDays.add(getDay("WED"));
-    availableDays.add(getDay("THU"));
-    availableDays.add(getDay("FRI"));
-    availableDays.add(getDay("SAT"));
+    availableDays.add(getDay("SUN",true));
+    availableDays.add(getDay("MON",false));
+    availableDays.add(getDay("TUE",false));
+    availableDays.add(getDay("WED",true));
+    availableDays.add(getDay("THU",true));
+    availableDays.add(getDay("FRI",false));
+    availableDays.add(getDay("SAT",false));
 
   }
-  getDay(title)
+  getDay(title,bool available)
   {
-    Slots morning = Slots(title: "Morning",available: true);
+    Slots morning = Slots(title: "Morning");
     Slots evening = Slots(title: "Evening");
     Slots afternoon = Slots(title: "After Noon");
     List<Slots> timeSlots = [];
     timeSlots.add(morning);
     timeSlots.add(afternoon);
     timeSlots.add(evening);
-    return AvailableDays(slots: timeSlots, day: title);
+    return AvailableDays(slots: timeSlots, day: title,available: available);
 
   }
 }

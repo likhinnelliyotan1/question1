@@ -11,7 +11,8 @@ import 'package:question1/notifiers/update_notifier.dart';
 import 'package:question1/repo/timerrepo.dart';
 
 class LaunchScreen extends StatefulWidget {
-  const LaunchScreen({Key? key}) : super(key: key);
+  String name;
+  LaunchScreen({required this.name});
 
   @override
   _LaunchState createState() => _LaunchState();
@@ -57,7 +58,13 @@ class _LaunchState extends State<LaunchScreen> {
                   },
                 ),
                 const SizedBox(height: 20,),
-                commonButton(name: "Save", onTap: () {},bg:colorPrimary)
+                InkWell(
+                  onTap: (){
+                    saveData();
+                  },
+                  child: commonButton(name: "Save",bg:colorPrimary),
+                )
+
               ],
             ),
           ),
@@ -145,22 +152,56 @@ class _LaunchState extends State<LaunchScreen> {
       ),
     );
   }
-  List<AvailableDays> getAvailableDays()
+  List<String> getAvailableDays()
   {
-    List<AvailableDays> days=[];
+    List<String> days=[];
     for(int i=0;i<availableDays.length;i++)
       {
         if(availableDays[i].available!)
-          days.add(availableDays[i]);
+          {
+            for(int j=0;j<availableDays[i].slots!.length;j++)
+              {
+                if(availableDays[i].slots![j].available!)
+                  {
+                    days.add(availableDays[i].day!+" "+availableDays[i].slots![j].title!);
+                  }
+              }
+          }
       }
     return days;
   }
   saveData()
   {
-    List<AvailableDays> days=getAvailableDays();
-    String txt="";
-    Days day=Days(days:availableDays);
-    //var jsonData=Days().toJson();
+    List<String> days=getAvailableDays();
 
+    String txt="Hi "+widget.name+" Available on";
+    for(int i=0;i<days.length;i++)
+      {
+        if(i==days.length-1&&days.length!=1)
+          txt=txt+"and "+days[i];
+        else if (i==0)
+            txt=txt+days[i];
+        else
+          txt=txt+", "+days[i];
+      }
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (BuildContext context) => displayData(txt)));
+  }
+  displayData(String text)
+  {
+    return Scaffold(
+      body: Container(
+        height: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.height,
+        color: Colors.white,
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+                color: Colors.black, fontSize: 22),
+          ),
+        ),
+      ),
+    );
   }
 }

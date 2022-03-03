@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:question1/screens/landingscreen.dart';
 import 'helper/themedata.dart';
 import 'notifiers/update_notifier.dart';
 import 'screens/launchscreen.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           // primarySwatch: colorPrimary,
           visualDensity: VisualDensity.standard,
         ),
-        home: const LaunchScreen(),
+        home:  LandingScreen(),
       ),
     );
   }
