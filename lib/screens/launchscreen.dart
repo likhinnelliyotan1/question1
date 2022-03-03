@@ -178,7 +178,7 @@ class _LaunchState extends State<LaunchScreen> {
     for(int i=0;i<days.length;i++)
       {
         if(i==days.length-1&&days.length!=1)
-          txt=txt+"and "+days[i];
+          txt=txt+" and "+days[i];
         else if (i==0)
             txt=txt+days[i];
         else
